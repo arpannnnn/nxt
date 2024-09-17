@@ -1,4 +1,5 @@
 'use client'
+import { useAuthActions } from "@convex-dev/auth/react";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc"
 import { FaGithub } from "react-icons/fa"
@@ -15,6 +16,7 @@ interface SignInCardProps {
 export const SignInCard = ({ setState}:SignInCardProps ) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { signIn } = useAuthActions();
 
     return (
         <Card className="w-full h-full p-8">
@@ -73,6 +75,7 @@ export const SignInCard = ({ setState}:SignInCardProps ) => {
                         <FaGithub className="size-5 absolute top-2.5 left-2.5" />
                         Continue with Github
                     </Button>
+                    <Button onClick={() => void signIn("github")}>Sign in with GitHub</Button>
                 </div>
                 <p className="text-xs text-muted-foreground dark:text-muted-foreground">
                     Don&apos;t have an account? <span onClick={()=> setState("signUp")} className="text-primary cursor-pointer text-sky-700 hover:underline ">Sign Up</span>
